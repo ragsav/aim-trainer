@@ -10,11 +10,14 @@ function App() {
           <Route exact path="/">
             <ChallengeArena />
           </Route>
-          <Route exact path="/challenge"></Route>
+          <Route exact path="/challenge">
+            <ChallengeArena />
+          </Route>
           <Route exact path="/precision"></Route>
           <Route exact path="/double"></Route>
           <Route exact path="/moving"></Route>
           <Route exact path="/tracking"></Route>
+          
         </Switch>
       </Router>
     </div>
