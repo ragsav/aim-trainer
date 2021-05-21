@@ -5,7 +5,9 @@ import ChallengeArena from "./components/challengeArena";
 function App() {
   return (
     <div className="App">
-      <Router>
+      {"hello"}
+      <ChallengeArena />
+      {/* <Router>
         <Switch>
           <Route exact path="/">
             <ChallengeArena />
@@ -17,9 +19,9 @@ function App() {
           <Route exact path="/double"></Route>
           <Route exact path="/moving"></Route>
           <Route exact path="/tracking"></Route>
-          
+          <Route>C</Route>
         </Switch>
-      </Router>
+      </Router> */}
     </div>
   );
 }

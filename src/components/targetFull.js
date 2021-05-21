@@ -20,13 +20,13 @@ export class TargetFull {
 
   drawTarget(ctx) {
     if (this.orignalR < this.r && this.growth === 1 && this.isActive) {
-      this.orignalR = this.orignalR + 0.15;
+      this.orignalR = this.orignalR + 0.3;
       if (this.orignalR === this.r || this.orignalR > this.r) {
         this.growth = -1;
         this.orignalR = this.r;
       }
     } else if (this.orignalR > 0 && this.growth === -1 && this.isActive) {
-      this.orignalR = this.orignalR - 0.1;
+      this.orignalR = this.orignalR - 0.2;
       if (this.orignalR === 0 || this.orignalR < 0) {
         this.growth = 1;
         this.orignalR = 0;
