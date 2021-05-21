@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/aim-trainer/static/css/main.a1b9d98f.chunk.css",
-    "main.js": "/aim-trainer/static/js/main.ae15bfa8.chunk.js",
-    "main.js.map": "/aim-trainer/static/js/main.ae15bfa8.chunk.js.map",
+    "main.css": "/aim-trainer/static/css/main.715bc66e.chunk.css",
+    "main.js": "/aim-trainer/static/js/main.d25441a7.chunk.js",
+    "main.js.map": "/aim-trainer/static/js/main.d25441a7.chunk.js.map",
     "runtime-main.js": "/aim-trainer/static/js/runtime-main.aff48a22.js",
     "runtime-main.js.map": "/aim-trainer/static/js/runtime-main.aff48a22.js.map",
     "static/js/2.755af82b.chunk.js": "/aim-trainer/static/js/2.755af82b.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.2cf2f9e3.chunk.js": "/aim-trainer/static/js/3.2cf2f9e3.chunk.js",
     "static/js/3.2cf2f9e3.chunk.js.map": "/aim-trainer/static/js/3.2cf2f9e3.chunk.js.map",
     "index.html": "/aim-trainer/index.html",
-    "static/css/main.a1b9d98f.chunk.css.map": "/aim-trainer/static/css/main.a1b9d98f.chunk.css.map",
+    "static/css/main.715bc66e.chunk.css.map": "/aim-trainer/static/css/main.715bc66e.chunk.css.map",
     "static/js/2.755af82b.chunk.js.LICENSE.txt": "/aim-trainer/static/js/2.755af82b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.aff48a22.js",
     "static/js/2.755af82b.chunk.js",
-    "static/css/main.a1b9d98f.chunk.css",
-    "static/js/main.ae15bfa8.chunk.js"
+    "static/css/main.715bc66e.chunk.css",
+    "static/js/main.d25441a7.chunk.js"
   ]
 }
