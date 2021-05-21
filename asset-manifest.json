@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/aim-trainer/static/css/main.a1b9d98f.chunk.css",
-    "main.js": "/aim-trainer/static/js/main.7727cada.chunk.js",
-    "main.js.map": "/aim-trainer/static/js/main.7727cada.chunk.js.map",
-    "runtime-main.js": "/aim-trainer/static/js/runtime-main.3e259ef7.js",
-    "runtime-main.js.map": "/aim-trainer/static/js/runtime-main.3e259ef7.js.map",
-    "static/js/2.5dfad346.chunk.js": "/aim-trainer/static/js/2.5dfad346.chunk.js",
-    "static/js/2.5dfad346.chunk.js.map": "/aim-trainer/static/js/2.5dfad346.chunk.js.map",
-    "static/js/3.37fa4aac.chunk.js": "/aim-trainer/static/js/3.37fa4aac.chunk.js",
-    "static/js/3.37fa4aac.chunk.js.map": "/aim-trainer/static/js/3.37fa4aac.chunk.js.map",
+    "main.js": "/aim-trainer/static/js/main.bc425d1f.chunk.js",
+    "main.js.map": "/aim-trainer/static/js/main.bc425d1f.chunk.js.map",
+    "runtime-main.js": "/aim-trainer/static/js/runtime-main.2c4dfd3b.js",
+    "runtime-main.js.map": "/aim-trainer/static/js/runtime-main.2c4dfd3b.js.map",
+    "static/js/2.a256d899.chunk.js": "/aim-trainer/static/js/2.a256d899.chunk.js",
+    "static/js/2.a256d899.chunk.js.map": "/aim-trainer/static/js/2.a256d899.chunk.js.map",
+    "static/js/3.d7d84707.chunk.js": "/aim-trainer/static/js/3.d7d84707.chunk.js",
+    "static/js/3.d7d84707.chunk.js.map": "/aim-trainer/static/js/3.d7d84707.chunk.js.map",
     "index.html": "/aim-trainer/index.html",
     "static/css/main.a1b9d98f.chunk.css.map": "/aim-trainer/static/css/main.a1b9d98f.chunk.css.map",
-    "static/js/2.5dfad346.chunk.js.LICENSE.txt": "/aim-trainer/static/js/2.5dfad346.chunk.js.LICENSE.txt"
+    "static/js/2.a256d899.chunk.js.LICENSE.txt": "/aim-trainer/static/js/2.a256d899.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.3e259ef7.js",
-    "static/js/2.5dfad346.chunk.js",
+    "static/js/runtime-main.2c4dfd3b.js",
+    "static/js/2.a256d899.chunk.js",
     "static/css/main.a1b9d98f.chunk.css",
-    "static/js/main.7727cada.chunk.js"
+    "static/js/main.bc425d1f.chunk.js"
   ]
 }
