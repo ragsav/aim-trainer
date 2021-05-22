@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/aim-trainer/static/css/main.d9292c6f.chunk.css",
-    "main.js": "/aim-trainer/static/js/main.939b04ae.chunk.js",
-    "main.js.map": "/aim-trainer/static/js/main.939b04ae.chunk.js.map",
+    "main.js": "/aim-trainer/static/js/main.ef856022.chunk.js",
+    "main.js.map": "/aim-trainer/static/js/main.ef856022.chunk.js.map",
     "runtime-main.js": "/aim-trainer/static/js/runtime-main.87a3b3ed.js",
     "runtime-main.js.map": "/aim-trainer/static/js/runtime-main.87a3b3ed.js.map",
     "static/css/2.00bb4513.chunk.css": "/aim-trainer/static/css/2.00bb4513.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.00bb4513.chunk.css",
     "static/js/2.91f1502b.chunk.js",
     "static/css/main.d9292c6f.chunk.css",
-    "static/js/main.939b04ae.chunk.js"
+    "static/js/main.ef856022.chunk.js"
   ]
 }
