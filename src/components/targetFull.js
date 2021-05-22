@@ -2,7 +2,7 @@ import { Vector } from "./vector";
 import { v4 as uuidv4 } from "uuid";
 
 export class TargetFull {
-  constructor(x, y, r, creatures, speed, dirChangeProp) {
+  constructor(x, y, r, creatures, data, speed, dirChangeProp) {
     this.id = uuidv4();
     this.r = r;
     this.orignalR = 0;
@@ -11,11 +11,13 @@ export class TargetFull {
     this.speed = speed;
     this.birth = Date.now();
     this.pos = new Vector(x, y);
+    this.clickPos = null;
     this.isActive = true;
     this.isClicked = false;
     this.clickedTime = null;
     this.vel = new Vector(Math.random(), Math.random());
     creatures.current.push(this);
+    data.current.targets.push(this);
   }
 
   drawTarget(ctx) {
@@ -33,17 +35,45 @@ export class TargetFull {
       }
     }
 
-    ctx.beginPath();
-    ctx.arc(this.pos.x, this.pos.y, this.orignalR, 0, 2 * Math.PI);
-    ctx.fillStyle = this.isActive ? "#00FFFF" : "#FF5100";
-    if (!this.isClicked) {
-      ctx.fill();
-    } else {
+    if(this.isActive){
+      if (this.isClicked) {
+        ctx.beginPath();
+        ctx.arc(this.pos.x, this.pos.y, this.orignalR, 0, 2 * Math.PI);
+        ctx.stroke();
+        ctx.strokeStyle = "#4DFF00";
+        ctx.lineWidth = 2;
+        ctx.closePath();
+      } else {
+        ctx.beginPath();
+        ctx.arc(this.pos.x, this.pos.y, this.orignalR, 0, 2 * Math.PI);
+        ctx.fillStyle = "#FF5100";
+        ctx.fill();
+        ctx.closePath();
+        ctx.beginPath();
+        ctx.arc(this.pos.x, this.pos.y, this.orignalR*3/4, 0, 2 * Math.PI);
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fill();
+        ctx.closePath();
+        ctx.beginPath();
+        ctx.arc(this.pos.x, this.pos.y, this.orignalR/2, 0, 2 * Math.PI);
+        ctx.fillStyle = "#FF5100";
+        ctx.fill();
+        ctx.closePath();
+        ctx.beginPath();
+        ctx.arc(this.pos.x, this.pos.y, this.orignalR*1/4, 0, 2 * Math.PI);
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fill();
+        ctx.closePath();
+      }
+    }else{
+      ctx.beginPath();
+      ctx.arc(this.pos.x, this.pos.y, this.orignalR, 0, 2 * Math.PI);
       ctx.stroke();
-      ctx.strokeStyle = "#9DFF00";
+      ctx.strokeStyle = "#FFFFFF";
       ctx.lineWidth = 2;
+      ctx.closePath();      
     }
-    ctx.closePath();
+    
   }
 
   canDie() {

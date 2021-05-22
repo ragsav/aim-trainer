@@ -1,8 +1,14 @@
+import { HeartFilled } from '@ant-design/icons';
 const LifeIndicator = (props) => {
+
+    const a  = new Array(5).fill(1);
   return (
     <div
       style={{ color: "white", fontWeight: "600" }}
-    >{`Lifes remaining : ${props.value}`}</div>
+      className="d-flex justify-content-center align-items-end h-100"
+    >{a.map((d,index)=>{
+        return <div className="p-1"><HeartFilled style={{color:index<props.value?"red":"white"}}/></div>
+    })}</div>
   );
 };
 
