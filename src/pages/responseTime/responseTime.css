@@ -47,8 +47,6 @@
     outline: none !important;
 }
 
-
-        
 @media screen and (max-width:750px) {
     .nav-bar-stat-item{
         display: none;
@@ -59,6 +57,9 @@
         font-weight: 600;
     }
 }
+
+
+         
         
          
          

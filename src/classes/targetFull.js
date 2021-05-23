@@ -18,23 +18,28 @@ export class TargetFull {
     this.clickedTime = null;
     this.vel = new Vector(Math.random() * speed, Math.random() * speed);
     creatures.current.push(this);
-    data.current.targets.push(this);
+    data?.current?.targets?.push(this);
   }
 
   drawTarget(ctx) {
-    if (this.orignalR < this.r && this.growth === 1 && this.isActive) {
-      this.orignalR = this.orignalR + 0.3;
-      if (this.orignalR === this.r || this.orignalR > this.r) {
-        this.growth = -1;
-        this.orignalR = this.r;
+    if  (this.r  >  10)  {
+      if (this.orignalR < this.r && this.growth === 1 && this.isActive) {
+        this.orignalR = this.orignalR + 0.3;
+        if (this.orignalR === this.r || this.orignalR > this.r) {
+          this.growth = -1;
+          this.orignalR = this.r;
+        }
+      } else if (this.orignalR > 0 && this.growth === -1 && this.isActive) {
+        this.orignalR = this.orignalR - 0.2;
+        if (this.orignalR === 0 || this.orignalR < 0) {
+          this.growth = 1;
+          this.orignalR = 0;
+        }
       }
-    } else if (this.orignalR > 0 && this.growth === -1 && this.isActive) {
-      this.orignalR = this.orignalR - 0.2;
-      if (this.orignalR === 0 || this.orignalR < 0) {
-        this.growth = 1;
-        this.orignalR = 0;
-      }
+    }  else  {
+      this.orignalR = this.r;
     }
+    
 
     if (this.isActive) {
       if (this.isClicked) {
@@ -140,7 +145,7 @@ export class TargetFull {
 
   updateCreature(ctx) {
     this.reposition(ctx);
-    console.log(ctx);
+    // console.log(ctx);
     if (this.birth + 2200 < Date.now()) {
       this.isActive = false;
     }

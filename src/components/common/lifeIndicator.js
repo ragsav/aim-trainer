@@ -4,7 +4,7 @@ const LifeIndicator = (props) => {
   return (
     <div
       style={{ color: "white", fontWeight: "600" }}
-      className="d-flex justify-content-center align-items-end h-100"
+      className="d-flex justify-content-center align-items-end h-100 "
     >
       {a.map((d, index) => {
         return (
