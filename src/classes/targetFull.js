@@ -2,12 +2,13 @@ import { Vector } from "./vector";
 import { v4 as uuidv4 } from "uuid";
 
 export class TargetFull {
-  constructor(x, y, r, creatures, data, speed, dirChangeProp) {
+  constructor(x, y, r, creatures, data, speed) {
     this.id = uuidv4();
     this.r = r;
     this.orignalR = 0;
+    this.clickR = r;
     this.growth = 1;
-    this.dirChangeProp = dirChangeProp;
+
     this.speed = speed;
     this.birth = Date.now();
     this.pos = new Vector(x, y);
@@ -15,7 +16,7 @@ export class TargetFull {
     this.isActive = true;
     this.isClicked = false;
     this.clickedTime = null;
-    this.vel = new Vector(Math.random(), Math.random());
+    this.vel = new Vector(Math.random() * speed, Math.random() * speed);
     creatures.current.push(this);
     data.current.targets.push(this);
   }
@@ -35,7 +36,7 @@ export class TargetFull {
       }
     }
 
-    if(this.isActive){
+    if (this.isActive) {
       if (this.isClicked) {
         ctx.beginPath();
         ctx.arc(this.pos.x, this.pos.y, this.orignalR, 0, 2 * Math.PI);
@@ -50,30 +51,41 @@ export class TargetFull {
         ctx.fill();
         ctx.closePath();
         ctx.beginPath();
-        ctx.arc(this.pos.x, this.pos.y, this.orignalR*3/4, 0, 2 * Math.PI);
+        ctx.arc(
+          this.pos.x,
+          this.pos.y,
+          (this.orignalR * 3) / 4,
+          0,
+          2 * Math.PI
+        );
         ctx.fillStyle = "#FFFFFF";
         ctx.fill();
         ctx.closePath();
         ctx.beginPath();
-        ctx.arc(this.pos.x, this.pos.y, this.orignalR/2, 0, 2 * Math.PI);
+        ctx.arc(this.pos.x, this.pos.y, this.orignalR / 2, 0, 2 * Math.PI);
         ctx.fillStyle = "#FF5100";
         ctx.fill();
         ctx.closePath();
         ctx.beginPath();
-        ctx.arc(this.pos.x, this.pos.y, this.orignalR*1/4, 0, 2 * Math.PI);
+        ctx.arc(
+          this.pos.x,
+          this.pos.y,
+          (this.orignalR * 1) / 4,
+          0,
+          2 * Math.PI
+        );
         ctx.fillStyle = "#FFFFFF";
         ctx.fill();
         ctx.closePath();
       }
-    }else{
+    } else {
       ctx.beginPath();
       ctx.arc(this.pos.x, this.pos.y, this.orignalR, 0, 2 * Math.PI);
       ctx.stroke();
       ctx.strokeStyle = "#FFFFFF";
       ctx.lineWidth = 2;
-      ctx.closePath();      
+      ctx.closePath();
     }
-    
   }
 
   canDie() {
@@ -81,39 +93,44 @@ export class TargetFull {
     return this.birth + 2500 < Date.now();
   }
 
-  reposition(boundaries) {
+  setClickedRadius() {
+    this.clickR = this.orignalR;
+  }
+
+  reposition(ctx) {
+    const canvas = ctx.canvas;
     const multiplier = [1, -1];
     const plusMinusX = Math.floor(Math.random() * 2);
     const plusMinusY = Math.floor(Math.random() * 2);
     let newPosition;
-    if (true && Math.random() < this.dirChangeProp) {
+    if (Math.random() > 0.98) {
       this.vel = new Vector(
         multiplier[plusMinusX] * Math.random(),
         multiplier[plusMinusY] * Math.random()
       );
     }
-    newPosition = this.pos.add(this.vel * this.speed);
+    newPosition = this.pos.add(this.vel.mult(this.speed));
 
     let isAtBoundary = false;
-    if (newPosition.x + this.r > boundaries.right) {
+    if (newPosition.x + this.r > canvas.clientWidth) {
       this.vel = new Vector(-1 * this.vel.x, this.vel.y);
       isAtBoundary = true;
     }
-    if (newPosition.y + this.r > window.bottom) {
+    if (newPosition.y + this.r > canvas.clientHeight) {
       this.vel = new Vector(this.vel.x, -1 * this.vel.y);
       isAtBoundary = true;
     }
-    if (newPosition.x < boundaries.left) {
+    if (newPosition.x + this.r < 0) {
       this.vel = new Vector(-1 * this.vel.x, this.vel.y);
       isAtBoundary = true;
     }
-    if (newPosition.y < boundaries.top) {
+    if (newPosition.y + this.r < 0) {
       this.vel = new Vector(this.vel.x, -1 * this.vel.y);
       isAtBoundary = true;
     }
 
     if (isAtBoundary) {
-      newPosition = this.pos.add(this.vel * this.speed);
+      newPosition = this.pos.add(this.vel.mult(this.speed));
     }
 
     this.pos = newPosition;
@@ -121,8 +138,9 @@ export class TargetFull {
     // console.log(this.pos);
   }
 
-  updateCreature(ctx, boundaries) {
-    // this.reposition(boundaries);
+  updateCreature(ctx) {
+    this.reposition(ctx);
+    console.log(ctx);
     if (this.birth + 2200 < Date.now()) {
       this.isActive = false;
     }

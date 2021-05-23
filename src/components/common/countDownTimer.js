@@ -13,12 +13,26 @@ const CountDownTimer = (props) => {
   return (
     <div
       style={{
+        position: "absolute",
+        width: props.width,
+        height: props.height,
+        backgroundColor: "#FFFFFF26",
         color: "white",
         fontSize: "large",
         fontWeight: "700",
+        zIndex: 2,
       }}
+      className="d-flex justify-content-center align-items-center"
     >
-      {countDown}
+      <div
+        style={{
+          color: "white",
+          fontSize: "large",
+          fontWeight: "700",
+        }}
+      >
+        {countDown}
+      </div>
     </div>
   );
 };
