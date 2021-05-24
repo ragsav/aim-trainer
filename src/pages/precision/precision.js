@@ -9,6 +9,8 @@ import PrecisionResults from "../../components/precision/precisionResults";
 import PrecisionSettings from "../../components/precision/precisionSettings";
 
 import Modal from "antd/lib/modal/Modal";
+import gunshot from "../../assets/sounds/shotgun.mp3";
+import gunReload from "../../assets/sounds/shotgun-reload.mp3";
 
 function clearCanvas(ctx, canvasRef) {
   ctx?.clearRect(
@@ -44,7 +46,9 @@ const PrecisionArena = () => {
   const [speed, setSpeed] = useState(1000);
   const [hits, setHits] = useState(0);
   const TARGETS = useRef([]);
-
+  const [isSoundOn, setIsSoundOn] = useState(true);
+  const gunshotRef = useRef(null);
+  const gunReloadRef = useRef(null);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   useEffect(() => {
@@ -99,6 +103,11 @@ const PrecisionArena = () => {
     gameLoops.current = 0;
     TARGETS.current = [];
     playingRef.current = true;
+    if (isSoundOn) {
+      gunReloadRef.current.pause();
+      gunReloadRef.current.currentTime = 0;
+      gunReloadRef.current.play();
+    }
   }
 
   function finishGame() {
@@ -146,6 +155,11 @@ const PrecisionArena = () => {
 
   function handleCanvasClick(e) {
     const mouse = new Vector(e.clientX - 40, e.clientY - 70);
+    if (isSoundOn) {
+      gunshotRef.current.pause();
+      gunshotRef.current.currentTime = 0;
+      gunshotRef.current.play();
+    }
     const targets = TARGETS.current;
     for (let i = 0; i < targets.length; i++) {
       if (
@@ -180,6 +194,12 @@ const PrecisionArena = () => {
       style={{ height: "100%", width: "100%" }}
       className="d-flex flex-column"
     >
+      {isSoundOn ? (
+        <div>
+          <audio ref={gunshotRef} src={gunshot} />
+          <audio ref={gunReloadRef} src={gunReload} />
+        </div>
+      ) : null}
       <PrecisionSettings
         isSettingsOpen={isSettingsOpen}
         setIsSettingsOpen={setIsSettingsOpen}
@@ -191,6 +211,8 @@ const PrecisionArena = () => {
         width={window.innerWidth}
         precision={precision}
         setIsSettingsOpen={setIsSettingsOpen}
+        isSoundOn={isSoundOn}
+        setIsSoundOn={setIsSoundOn}
       />
       <div
         style={{

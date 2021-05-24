@@ -47,6 +47,12 @@
     outline: none !important;
 }
 
+.sound-disabled-button{
+    background-color: rgb(154, 154, 154) !important;
+    color: rgb(255, 255, 255) !important;
+    border: none !important;;
+}
+
 @media screen and (max-width:750px) {
     .nav-bar-stat-item{
         display: none;

@@ -1,0 +1,39 @@
+.link{
+    color: rgb(255, 133, 52);
+}
+.link:hover{
+    color: white;
+}
+
+.github{
+    color:white
+}
+.github:hover{
+    color: rgb(255, 133, 52);
+}
+
+.logo{
+    
+}
+.logo:hover{
+    transform: rotate(45deg);
+    transition: all 0.2s linear;
+}
+
+/* @keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(45deg);
+  }
+} */
+
+.linear {
+  animation-timing-function: linear;
+}
+
+
+.infinite {
+  animation-iteration-count: infinite;
+}

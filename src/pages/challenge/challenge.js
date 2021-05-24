@@ -8,6 +8,8 @@ import ChallengeNavBar from "../../components/challenge/challengeNavbar";
 import ChallengeResults from "../../components/challenge/challengeResults";
 import ChallengeSettings from "../../components/challenge/challengeSettings";
 import Modal from "antd/lib/modal/Modal";
+import gunshot from "../../assets/sounds/shotgun.mp3";
+import gunReload from "../../assets/sounds/shotgun-reload.mp3";
 
 function clearCanvas(ctx, canvasRef) {
   ctx?.clearRect(
@@ -33,7 +35,7 @@ const ChallengeArena = () => {
   const [lifes, setlifes] = useState(totalLifes);
   const lifesRef = useRef(totalLifes);
   const gameLoops = useRef(0);
-  const [speed, setSpeed] = useState(1);
+  const [speed, setSpeed] = useState(0);
   const playingRef = useRef(false);
   const [playing, setPlaying] = useState(playingRef.current);
   const [gameStarted, setGameStarted] = useState(false);
@@ -42,8 +44,11 @@ const ChallengeArena = () => {
   const data = useRef({ totalTargets: 0, targets: [], finishTime: null });
   const [hits, setHits] = useState(0);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [spawnRateLimit, setSpawnRateLimit] = useState(600);
-  const [spawnRateIncrease, setSpawnRateIncrease] = useState(100);
+  const [spawnRateLimit, setSpawnRateLimit] = useState(1000);
+  const [spawnRateIncrease, setSpawnRateIncrease] = useState(50);
+  const [isSoundOn, setIsSoundOn] = useState(true);
+  const gunshotRef = useRef(null);
+  const gunReloadRef = useRef(null);
 
   useEffect(() => {
     if (isSettingsOpen && playing) {
@@ -100,6 +105,11 @@ const ChallengeArena = () => {
     lifesRef.current = totalLifes;
     TARGETS.current = [];
     playingRef.current = true;
+    if (isSoundOn) {
+      gunReloadRef.current.pause();
+      gunReloadRef.current.currentTime = 0;
+      gunReloadRef.current.play();
+    }
   }
 
   function finishGame() {
@@ -164,6 +174,11 @@ const ChallengeArena = () => {
 
   function handleCanvasClick(e) {
     const mouse = new Vector(e.clientX - 40, e.clientY - 70);
+    if (isSoundOn) {
+      gunshotRef.current.pause();
+      gunshotRef.current.currentTime = 0;
+      gunshotRef.current.play();
+    }
     const targets = TARGETS.current;
     for (let i = 0; i < targets.length; i++) {
       if (
@@ -191,6 +206,12 @@ const ChallengeArena = () => {
       style={{ height: "100%", width: "100%" }}
       className="d-flex flex-column"
     >
+      {isSoundOn ? (
+        <div>
+          <audio ref={gunshotRef} src={gunshot} />
+          <audio ref={gunReloadRef} src={gunReload} />
+        </div>
+      ) : null}
       <ChallengeSettings
         isSettingsOpen={isSettingsOpen}
         setIsSettingsOpen={setIsSettingsOpen}
@@ -211,6 +232,8 @@ const ChallengeArena = () => {
         width={window.innerWidth}
         setIsSettingsOpen={setIsSettingsOpen}
         totalLifes={totalLifes}
+        isSoundOn={isSoundOn}
+        setIsSoundOn={setIsSoundOn}
       />
       <div
         style={{

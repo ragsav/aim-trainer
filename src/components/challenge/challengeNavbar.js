@@ -1,6 +1,6 @@
 import { Button } from "antd";
 import aimLogo from "../../assets/aim.png";
-import { SettingFilled } from "@ant-design/icons";
+import { SettingFilled, SoundFilled } from "@ant-design/icons";
 
 import LifeIndicator from "../../components/common/lifeIndicator";
 const ChallengeNavBar = (props) => {
@@ -31,7 +31,16 @@ const ChallengeNavBar = (props) => {
         </div>
 
         <Button
-          className="ml-5 settings-button"
+          className={
+            props.isSoundOn
+              ? "ml-5 settings-button"
+              : "ml-5 sound-disabled-button"
+          }
+          icon={<SoundFilled style={{ fontSize: 20 }} />}
+          onClick={() => props.setIsSoundOn(!props.isSoundOn)}
+        />
+        <Button
+          className="ml-3 settings-button"
           icon={<SettingFilled style={{ fontSize: 20 }} />}
           onClick={() => props.setIsSettingsOpen(true)}
         />

@@ -20,7 +20,11 @@
     font-weight: 800;
     letter-spacing: 1.5px;
 }
-
+.sound-disabled-button{
+    background-color: rgb(154, 154, 154) !important;
+    color: rgb(255, 255, 255) !important;
+    border: none !important;;
+}
 .core-button:hover{
     background-color: white !important;
     color: rgb(255, 133, 52) !important;

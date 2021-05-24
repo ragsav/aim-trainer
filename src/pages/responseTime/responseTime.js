@@ -8,7 +8,8 @@ import ResponseTimeNavBar from "../../components/responseTime/responseTimeNabar"
 import ResponseTimeResults from "../../components/responseTime/responseTimeResults";
 import ResponseTimeSettings from "../../components/responseTime/responseTimeSettings";
 import Modal from "antd/lib/modal/Modal";
-
+import gunshot from "../../assets/sounds/shotgun.mp3";
+import gunReload from "../../assets/sounds/shotgun-reload.mp3";
 function clearCanvas(ctx, canvasRef) {
   ctx?.clearRect(
     0,
@@ -29,7 +30,9 @@ const ResponseArena = () => {
   const [ctx, setCtx] = useState(null);
   const canvasRef = useRef(null);
   const startTimeRef = useRef(Date.now());
-
+  const [isSoundOn, setIsSoundOn] = useState(true);
+  const gunshotRef = useRef(null);
+  const gunReloadRef = useRef(null);
   const gameLoops = useRef(0);
 
   const playingRef = useRef(false);
@@ -94,6 +97,11 @@ const ResponseArena = () => {
     gameLoops.current = 0;
     TARGETS.current = [];
     playingRef.current = true;
+    if (isSoundOn) {
+      gunReloadRef.current.pause();
+      gunReloadRef.current.currentTime = 0;
+      gunReloadRef.current.play();
+    }
   }
 
   function finishGame() {
@@ -151,6 +159,12 @@ const ResponseArena = () => {
   function handleCanvasClick(e) {
     const mouse = new Vector(e.clientX - 40, e.clientY - 70);
     const targets = TARGETS.current;
+    if (isSoundOn) {
+      gunshotRef.current.pause();
+      gunshotRef.current.currentTime = 0;
+      gunshotRef.current.play();
+    }
+    
     for (let i = 0; i < targets.length; i++) {
       if (
         targets[i].pos.subtr(mouse).mag() < targets[i].orignalR &&
@@ -190,6 +204,12 @@ const ResponseArena = () => {
       style={{ height: "100%", width: "100%" }}
       className="d-flex flex-column"
     >
+      {isSoundOn ? (
+        <div>
+          <audio ref={gunshotRef} src={gunshot} />
+          <audio ref={gunReloadRef} src={gunReload} />
+        </div>
+      ) : null}
       <ResponseTimeSettings
         isSettingsOpen={isSettingsOpen}
         setIsSettingsOpen={setIsSettingsOpen}
@@ -201,6 +221,8 @@ const ResponseArena = () => {
         width={window.innerWidth}
         responseTime={responseTime}
         setIsSettingsOpen={setIsSettingsOpen}
+        isSoundOn={isSoundOn}
+        setIsSoundOn={setIsSoundOn}
       />
       <div
         style={{
