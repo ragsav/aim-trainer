@@ -11,19 +11,13 @@ const Home = (props) => {
           className="d-flex justify-content-start align-items-center w-100 mt-3"
           style={{ fontSize: "x-large", fontWeight: "700", color: "white" }}
         >
-          <img
-            src={aimLogo}
-            height={60}
-            width={60}
-            className="mr-3 logo"
-          />
+          <img src={aimLogo} height={60} width={60} className="mr-3 logo" />
           <span className="nav-bar-title">Aim Trainer</span>
         </div>
         <div
           className="d-flex justify-content-end align-items-center w-100 mt-3"
           style={{ fontSize: "x-large", fontWeight: "700", color: "white" }}
         >
-          
           <a href="https://github.com/ragsav/aim-trainer">
             <GithubFilled className="github" style={{ fontSize: 36 }} />
           </a>
@@ -42,6 +36,9 @@ const Home = (props) => {
           </Link>
           <Link to={"/aim-trainer/precision"} className="link mr-5">
             Precision mode
+          </Link>
+          <Link to={"/aim-trainer/gravity"} className="link mr-5">
+            Gravity mode
           </Link>
         </div>
       </div>

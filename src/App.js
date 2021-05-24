@@ -5,6 +5,7 @@ import "antd/dist/antd.css";
 import Home from "./pages/home/home";
 import ResponseArena from "./pages/responseTime/responseTime";
 import PrecisionArena from "./pages/precision/precision";
+import GravityArena from "./pages/gravity/gravity";
 function App() {
   return (
     <div className="App">
@@ -23,9 +24,11 @@ function App() {
             <ResponseArena />
           </Route>
           <Route exact path="/aim-trainer/precision">
-            <PrecisionArena/>
+            <PrecisionArena />
           </Route>
-          
+          <Route exact path="/aim-trainer/gravity">
+            <GravityArena />
+          </Route>
         </Switch>
       </Router>
     </div>
