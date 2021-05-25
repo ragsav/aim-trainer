@@ -6,6 +6,7 @@ import Home from "./pages/home/home";
 import ResponseArena from "./pages/responseTime/responseTime";
 import PrecisionArena from "./pages/precision/precision";
 import GravityArena from "./pages/gravity/gravity";
+// import cursor from "./assets/crosshair.png";
 function App() {
   return (
     <div className="App">

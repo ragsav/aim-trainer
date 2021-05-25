@@ -3,6 +3,7 @@ import aimLogo from "../../assets/aim.png";
 import { SettingFilled, SoundFilled } from "@ant-design/icons";
 
 import LifeIndicator from "../../components/common/lifeIndicator";
+import { Link } from "react-router-dom";
 const ChallengeNavBar = (props) => {
   return (
     <div
@@ -13,12 +14,14 @@ const ChallengeNavBar = (props) => {
         className="d-flex justify-content-left align-items-center"
         style={{ fontSize: "x-large", fontWeight: "700", color: "white" }}
       >
-        <img
-          src={aimLogo}
-          height={30}
-          width={30}
-          className="mr-3 nav-bar-logo"
-        />
+        <Link to="/aim-trainer">
+          <img
+            src={aimLogo}
+            height={30}
+            width={30}
+            className="mr-3 nav-bar-logo"
+          />
+        </Link>
         <span className="nav-bar-title">Challenge</span>
       </div>
       <div

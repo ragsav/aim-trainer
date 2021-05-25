@@ -47,6 +47,7 @@ const ResponseArena = () => {
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
+
   useEffect(() => {
     if (isSettingsOpen && playing) {
       finishGame();
