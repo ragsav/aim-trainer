@@ -2,7 +2,7 @@ import { Vector } from "./vector";
 import { v4 as uuidv4 } from "uuid";
 
 export class TargetGravity {
-  constructor(x, y, r, targets, data, speed) {
+  constructor(x, y, r, targets, data, isGravityReversed, speed) {
     this.id = uuidv4();
     this.r = r;
     this.speed = speed;
@@ -11,8 +11,10 @@ export class TargetGravity {
     this.clickPos = null;
     this.isClicked = false;
     this.clickedTime = null;
-    this.vel = new Vector(0, 2 + Math.random() * speed);
+    this.gravity = speed/100*(isGravityReversed?-1:1)
+    this.vel = new Vector(0, isGravityReversed?(2+4*Math.random()):(-2-4*Math.random()));
     targets.current.push(this);
+    this.isGravityReversed = isGravityReversed;
     data?.current?.targets?.push(this);
   }
 
@@ -48,17 +50,20 @@ export class TargetGravity {
     }
   }
 
-  canDie() {
+  canDie(canvasHeight) {
     return (
       (this.isClicked && this.clickedTime + 200 < Date.now()) ||
-      (this.pos.y < 0 && this.vel.y < 0)
+      (!this.isGravityReversed &&
+        this.pos.y > canvasHeight + 20 &&
+        this.vel.y > 0) ||
+      (this.isGravityReversed && this.pos.y < -20 && this.vel.y < 0)
     );
   }
 
   reposition(ctx) {
-    const gravity = this.speed / 100;
+    
     const canvas = ctx.canvas;
-    this.vel = new Vector(0, this.vel.y - gravity);
+    this.vel = new Vector(0, this.vel.y +this.gravity);
     let newPosition = this.pos.add(this.vel);
     this.pos = newPosition;
 

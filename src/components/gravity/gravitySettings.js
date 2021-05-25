@@ -75,6 +75,15 @@ const GravitySettings = (props) => {
             max={8}
           />
         </div>
+        <div className="d-flex justify-content-between align-items-center mt-4 w-100 ">
+          <span>Reverse gravity</span>
+          <Switch
+            defaultValue={props.isGravityReversed}
+            onChange={(b) => {
+              props.setIsGravityReversed(b);
+            }}
+          />
+        </div>
       </div>
     </Modal>
   );

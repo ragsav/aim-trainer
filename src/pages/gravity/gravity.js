@@ -47,6 +47,7 @@ const GravityArena = () => {
   const [isSoundOn, setIsSoundOn] = useState(true);
   const gunshotRef = useRef(null);
   const gunReloadRef = useRef(null);
+  const [isGravityReversed, setIsGravityReversed] = useState(false);
 
   useEffect(() => {
     if (isSettingsOpen && playing) {
@@ -127,15 +128,23 @@ const GravityArena = () => {
   function addTarget(targets) {
     if (canvasRef && canvasRef.current) {
       const x = 20 + Math.random() * (canvasRef.current.clientWidth - 40);
-      const y = -20;
-      const target = new TargetGravity(x, y, 20, targets, data, 4);
+      const y = isGravityReversed ? -20 : canvasRef.current.clientHeight + 20;
+      const target = new TargetGravity(
+        x,
+        y,
+        20,
+        targets,
+        data,
+        isGravityReversed,
+        4
+      );
       data.current.totalTargets = data.current.totalTargets + 1;
     }
   }
 
   function die(targets) {
     for (let i = 0; i < targets.current.length; i++) {
-      if (targets.current[i].canDie()) {
+      if (targets.current[i].canDie(canvasRef.current.clientHeight)) {
         if (!targets.current[i].isClicked) {
           decreaseLife();
           if (lifesRef.current === 0) {
@@ -215,6 +224,8 @@ const GravityArena = () => {
         setSpawnRateIncrease={setSpawnRateIncrease}
         totalLifes={totalLifes}
         setTotalLifes={setTotalLifes}
+        isGravityReversed={isGravityReversed}
+        setIsGravityReversed={setIsGravityReversed}
       />
 
       <GravityNavBar
