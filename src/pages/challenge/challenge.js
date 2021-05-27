@@ -10,6 +10,10 @@ import Modal from "antd/lib/modal/Modal";
 import gunshot from "../../assets/sounds/shotgun.mp3";
 import gunReload from "../../assets/sounds/shotgun-reload.mp3";
 
+
+
+const paddingX = window.innerWidth<750?10:20;
+
 function clearCanvas(ctx, canvasRef) {
   ctx?.clearRect(
     0,
@@ -20,10 +24,10 @@ function clearCanvas(ctx, canvasRef) {
 }
 
 const boundaries = {
-  left: 20,
+  left: paddingX,
   top: 120,
-  right: window.innerWidth - 20,
-  bottom: window.innerHeight - 20,
+  right: window.innerWidth - paddingX,
+  bottom: window.innerHeight - paddingX,
 };
 
 const ChallengeArena = () => {
@@ -49,6 +53,7 @@ const ChallengeArena = () => {
   const gunshotRef = useRef(null);
   const gunReloadRef = useRef(null);
 
+  
   useEffect(() => {
     if (isSettingsOpen && playing) {
       finishGame();
@@ -174,7 +179,7 @@ const ChallengeArena = () => {
 
   function handleCanvasClick(e) {
     e.preventDefault();
-    const mouse = new Vector(e.clientX - 40, e.clientY - 70);
+    const mouse = new Vector(e.clientX - 2*paddingX, e.clientY - 70);
     if (isSoundOn) {
       gunshotRef.current.pause();
       gunshotRef.current.currentTime = 0;
@@ -242,7 +247,7 @@ const ChallengeArena = () => {
         style={{
           height: window.innerHeight - 50,
           width: window.innerWidth,
-          padding: 20,
+          padding: paddingX,
           position: "relative",
           
         }}
@@ -250,13 +255,13 @@ const ChallengeArena = () => {
       >
         {!gameStarted ? (
           <Play
-            width={window.innerWidth - 80}
+            width={window.innerWidth - 4*paddingX}
             height={window.innerHeight - 90}
             startGame={startGame}
           />
         ) : !playing ? (
           <ChallengeResults
-            width={window.innerWidth - 80}
+            width={window.innerWidth - 4*paddingX}
             height={window.innerHeight - 90}
             data={data.current}
             startGame={startGame}
@@ -265,7 +270,7 @@ const ChallengeArena = () => {
 
         {isCountDown ? (
           <CountDownTimer
-            width={window.innerWidth - 80}
+            width={window.innerWidth - 4*paddingX}
             height={window.innerHeight - 90}
           />
         ) : null}
@@ -277,7 +282,7 @@ const ChallengeArena = () => {
           id="canvas"
           // contentEditable={true}
           ref={canvasRef}
-          width={window.innerWidth - 80}
+          width={window.innerWidth - 4*paddingX}
           height={window.innerHeight - 90}
           // style={{ backgroundColor: "rgb(6, 43, 66)" }}
         ></canvas>

@@ -11,6 +11,8 @@ import Modal from "antd/lib/modal/Modal";
 import gunshot from "../../assets/sounds/shotgun.mp3";
 import gunReload from "../../assets/sounds/shotgun-reload.mp3";
 
+const paddingX = window.innerWidth < 750 ? 10 : 20;
+
 function clearCanvas(ctx, canvasRef) {
   ctx?.clearRect(
     0,
@@ -21,10 +23,10 @@ function clearCanvas(ctx, canvasRef) {
 }
 
 const boundaries = {
-  left: 20,
+  left: paddingX,
   top: 120,
-  right: window.innerWidth - 20,
-  bottom: window.innerHeight - 20,
+  right: window.innerWidth - paddingX,
+  bottom: window.innerHeight - paddingX,
 };
 
 const PrecisionArena = () => {
@@ -153,7 +155,7 @@ const PrecisionArena = () => {
   }
 
   function handleCanvasClick(e) {
-    const mouse = new Vector(e.clientX - 40, e.clientY - 70);
+    const mouse = new Vector(e.clientX - 2 * paddingX, e.clientY - 70);
     if (isSoundOn) {
       gunshotRef.current.pause();
       gunshotRef.current.currentTime = 0;
@@ -217,20 +219,20 @@ const PrecisionArena = () => {
         style={{
           height: window.innerHeight - 50,
           width: window.innerWidth,
-          padding: 20,
+          padding: paddingX,
           position: "relative",
         }}
         className="d-flex justify-content-center align-items-center"
       >
         {!gameStarted ? (
           <Play
-            width={window.innerWidth - 80}
+            width={window.innerWidth - 4     *     paddingX}
             height={window.innerHeight - 90}
             startGame={startGame}
           />
         ) : !playing ? (
           <PrecisionResults
-            width={window.innerWidth - 80}
+            width={window.innerWidth - 4     *     paddingX}
             height={window.innerHeight - 90}
             startGame={startGame}
             precision={precision}
@@ -240,7 +242,7 @@ const PrecisionArena = () => {
 
         {isCountDown ? (
           <CountDownTimer
-            width={window.innerWidth - 80}
+            width={window.innerWidth - 4     *     paddingX}
             height={window.innerHeight - 90}
           />
         ) : null}
@@ -252,7 +254,7 @@ const PrecisionArena = () => {
           tabIndex={1}
           id="canvas"
           ref={canvasRef}
-          width={window.innerWidth - 80}
+          width={window.innerWidth - 4     *     paddingX}
           height={window.innerHeight - 90}
           // style={{ backgroundColor: "rgb(6, 43, 66)" }}
         ></canvas>

@@ -9,6 +9,9 @@ import GravitySettings from "../../components/gravity/gravitySettings";
 import GravityNavBar from "../../components/gravity/gravityNavbar";
 import GravityResults from "../../components/gravity/gravityResults";
 
+
+const paddingX = window.innerWidth < 750 ? 10 : 20;
+
 function clearCanvas(ctx, canvasRef) {
   ctx?.clearRect(
     0,
@@ -19,10 +22,10 @@ function clearCanvas(ctx, canvasRef) {
 }
 
 const boundaries = {
-  left: 20,
+  left: paddingX,
   top: 120,
-  right: window.innerWidth - 20,
-  bottom: window.innerHeight - 20,
+  right: window.innerWidth - paddingX,
+  bottom: window.innerHeight - paddingX,
 };
 
 const GravityArena = () => {
@@ -179,7 +182,7 @@ const GravityArena = () => {
   }
 
   function handleCanvasClick(e) {
-    const mouse = new Vector(e.clientX - 40, e.clientY - 70);
+    const mouse = new Vector(e.clientX - 2 * paddingX, e.clientY - 70);
     if (isSoundOn) {
       gunshotRef.current.pause();
       gunshotRef.current.currentTime = 0;
@@ -241,20 +244,20 @@ const GravityArena = () => {
         style={{
           height: window.innerHeight - 50,
           width: window.innerWidth,
-          padding: 20,
+          padding: paddingX,
           position: "relative",
         }}
         className="d-flex justify-content-center align-items-center"
       >
         {!gameStarted ? (
           <Play
-            width={window.innerWidth - 80}
+            width={window.innerWidth - 4     *     paddingX}
             height={window.innerHeight - 90}
             startGame={startGame}
           />
         ) : !playing ? (
           <GravityResults
-            width={window.innerWidth - 80}
+            width={window.innerWidth - 4     *     paddingX}
             height={window.innerHeight - 90}
             data={data.current}
             startGame={startGame}
@@ -263,7 +266,7 @@ const GravityArena = () => {
 
         {isCountDown ? (
           <CountDownTimer
-            width={window.innerWidth - 80}
+            width={window.innerWidth - 4     *     paddingX}
             height={window.innerHeight - 90}
           />
         ) : null}
@@ -275,7 +278,7 @@ const GravityArena = () => {
           tabIndex={1}
           id="canvas"
           ref={canvasRef}
-          width={window.innerWidth - 80}
+          width={window.innerWidth - 4     *     paddingX}
           height={window.innerHeight - 90}
           // style={{ backgroundColor: "rgb(6, 43, 66)" }}
         ></canvas>

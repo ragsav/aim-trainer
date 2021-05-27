@@ -4,8 +4,8 @@ const Play = (props) => {
     <div
       style={{
         position: "absolute",
-        width: window.innerWidth - 80,
-        height: window.innerHeight - 90,
+        width: props.width,
+        height: props.height,
         backgroundColor: "#FFFFFF26",
         color: "white",
         fontSize: "large",
