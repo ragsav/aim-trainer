@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { TargetFull } from "../../classes/targetFull";
 import { Vector } from "../../classes/vector";
-import "./responseTime.css";
 import CountDownTimer from "../../components/common/countDownTimer";
 import Play from "../../components/common/play";
 import ResponseTimeNavBar from "../../components/responseTime/responseTimeNabar";
@@ -141,7 +140,7 @@ const ResponseArena = () => {
       die(TARGETS);
 
       if (TARGETS.current.length === 0) {
-        if (isCenterPlacement && Math.random() > 0.995) {
+        if (isCenterPlacement && Math.random() > 0.993) {
           addTarget(TARGETS);
         } else if (!isCenterPlacement && Math.random() > 0.9) {
           addTarget(TARGETS);

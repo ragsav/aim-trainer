@@ -1,5 +1,8 @@
 .link{
-    color: rgb(255, 133, 52);
+    color: tomato;
+}
+.home{
+  background-color:#111926;
 }
 .link:hover{
     color: white;
@@ -9,7 +12,7 @@
     color:white
 }
 .github:hover{
-    color: rgb(255, 133, 52);
+    color: tomato;
 }
 
 .logo{
@@ -36,4 +39,14 @@
 
 .infinite {
   animation-iteration-count: infinite;
+}
+
+.mode-description{
+  width: 80%;
+}
+
+@media screen and (max-width:750px) {
+  .mode-description{
+    width: 100%;
+  }
 }

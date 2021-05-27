@@ -20,6 +20,16 @@ const Play = (props) => {
           <span className="ml-2">PLAY</span>
         </div>
       </button>
+      <span
+        style={{
+          fontSize: "small",
+          fontWeight: "500",
+          zIndex: 2,
+        }}
+        className="mt-4"
+      >
+        Press (SPACE) or (ESC) to finish training
+      </span>
     </div>
   );
 };

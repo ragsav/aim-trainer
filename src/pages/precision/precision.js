@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { TargetFull } from "../../classes/targetFull";
 import { Vector } from "../../classes/vector";
-import "./precision.css";
 import CountDownTimer from "../../components/common/countDownTimer";
 import Play from "../../components/common/play";
 import PrecisionNavBar from "../../components/precision/precisionNabar";

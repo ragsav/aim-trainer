@@ -32,7 +32,7 @@ const GravityResults = (props) => {
           position: "absolute",
           width: props.width,
           height: props.height,
-          backgroundColor: "#FFFFFF26",
+          backgroundColor: "#FFFFFF00",
           color: "white",
           fontSize: "large",
           fontWeight: "700",

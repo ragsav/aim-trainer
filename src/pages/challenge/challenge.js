@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { TargetFull } from "../../classes/targetFull";
 import { Vector } from "../../classes/vector";
-import "./challenge.css";
 import CountDownTimer from "../../components/common/countDownTimer";
 import Play from "../../components/common/play";
 import ChallengeNavBar from "../../components/challenge/challengeNavbar";
@@ -95,6 +94,7 @@ const ChallengeArena = () => {
     if (!gameStarted) {
       setGameStarted(true);
     }
+
     clearCanvas(ctx, canvasRef);
     setPlaying(true);
     setIsCountDown(true);
@@ -173,6 +173,7 @@ const ChallengeArena = () => {
   }
 
   function handleCanvasClick(e) {
+    e.preventDefault();
     const mouse = new Vector(e.clientX - 40, e.clientY - 70);
     if (isSoundOn) {
       gunshotRef.current.pause();
@@ -195,7 +196,8 @@ const ChallengeArena = () => {
   }
 
   function handleKeyDown(e) {
-    if (e.keyCode === 32) {
+    e.preventDefault();
+    if (e.keyCode === 32 || e.keyCode === 27) {
       console.log("space key pressed");
       finishGame();
     }
@@ -203,6 +205,7 @@ const ChallengeArena = () => {
 
   return (
     <div
+      onKeyDown={handleKeyDown}
       style={{ height: "100%", width: "100%" }}
       className="d-flex flex-column"
     >
@@ -241,6 +244,7 @@ const ChallengeArena = () => {
           width: window.innerWidth,
           padding: 20,
           position: "relative",
+          
         }}
         className="d-flex justify-content-center align-items-center"
       >
@@ -269,9 +273,9 @@ const ChallengeArena = () => {
           style={{ position: "absolute" }}
           className="canvas"
           onClick={handleCanvasClick}
-          onKeyDown={handleKeyDown}
           tabIndex={1}
           id="canvas"
+          // contentEditable={true}
           ref={canvasRef}
           width={window.innerWidth - 80}
           height={window.innerHeight - 90}

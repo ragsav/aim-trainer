@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { Vector } from "../../classes/vector";
-import "./gravity.css";
 import CountDownTimer from "../../components/common/countDownTimer";
 import Play from "../../components/common/play";
 import gunshot from "../../assets/sounds/shotgun.mp3";
