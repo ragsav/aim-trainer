@@ -27,7 +27,7 @@ const CountDownTimer = (props) => {
       <div
         style={{
           color: "white",
-          fontSize: "large",
+          fontSize: "10em",
           fontWeight: "700",
         }}
       >

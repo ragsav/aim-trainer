@@ -5,38 +5,85 @@ import gunReload from "../../assets/sounds/shotgun-reload.mp3";
 import { GithubFilled } from "@ant-design/icons";
 import { useEffect, useRef, useState } from "react";
 import revolver from "../../assets/revolver.png";
-
+import challenge from "../../assets/thumbnails/challenge.PNG";
 
 const ModesLink = (props) => {
   const [isLinkHover, setIsLinkHover] = useState(false);
+
   return (
     <div
-      className="w-100 d-flex flex-column align-items-start px-3 mt-4"
-      style={{ textAlign: "start" ,borderLeft:"4px solid tomato",borderRadius:5}}
-
+      className="w-100 row m-0 p-0 px-1 mt-4 py-1 pb-2"
+      style={{
+        animationName: "slide-in",
+        animationDuration: "1s",
+        animationFillMode: "forwards",
+        animationDelay: props.delay,
+        transform: "translateX(-25000px)",
+        backgroundColor: "#182336",
+        borderRadius:4
+      }}
     >
-      
       <div
-        className="d-flex justify-content-start align-items-center w-100"
-        onMouseEnter={() => {
-          setIsLinkHover(true);
-        }}
-        onMouseLeave={() => {
-          setIsLinkHover(false);
+        className=" col-md-4 col-lg-3 m-0 p-0 px-2  mt-2  order-md-1 order-2"
+        style={{
+          width: "100%",
+          height: "100%",
         }}
       >
-        {isLinkHover ? (
-          <img src={revolver} style={{ height: 36, width: 36 }} className="mr-3"></img>
-        ) : null}
-        <Link to={`/aim-trainer/${props.url}`} className="link">
-          {props.title}
-        </Link>
-        {/* <div style={{backgroundColor:"tomato",height:2 ,width:"100%"}}></div> */}
+        <img
+          src={challenge}
+          style={{
+            width: "100%",
+            height: "100%",
+            border: "2px solid tomato",
+            borderRadius: 4,
+          }}
+        ></img>
       </div>
 
-      <p className="mode-description" style={{ fontSize: "medium" }}>
-        {props.desrciption}
-      </p>
+      <div
+        className=" col-md-8 col-lg-9 m-0 p-0 w-100 d-flex flex-column align-items-start px-3  order-md-2 order-1"
+        style={{
+          textAlign: "start",
+          // borderLeft: "4px solid tomato",
+          // borderRadius: 5,
+          
+          
+
+          // boxShadow:
+          //   "0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.19)",
+          // backgroundColor: "#16202F",
+        }}
+      >
+        <div
+          className="d-flex justify-content-start align-items-center w-100"
+          onMouseEnter={() => {
+            setIsLinkHover(true);
+          }}
+          onMouseLeave={() => {
+            setIsLinkHover(false);
+          }}
+        >
+          {isLinkHover ? (
+            <img
+              src={revolver}
+              style={{ height: 36, width: 36 }}
+              className="mr-3"
+            ></img>
+          ) : null}
+          <Link to={`/aim-trainer/${props.url}`} className="link">
+            {props.title}
+          </Link>
+          {/* <div style={{backgroundColor:"tomato",height:2 ,width:"100%"}}></div> */}
+        </div>
+
+        <p
+          className="mode-description"
+          style={{ fontSize: "medium", fontWeight: "600" }}
+        >
+          {props.desrciption}
+        </p>
+      </div>
     </div>
   );
 };
@@ -98,36 +145,37 @@ const Home = (props) => {
           >
             <ModesLink
               key={1}
+              delay={"0s"}
               url="challenge"
               title="CHALLENGE"
               desrciption="In this mode you can practice everything including response time,
               precision, accuracy, speed, with and without moving targets"
-              
             />
+            
             <ModesLink
               key={2}
+              delay={"0.1s"}
               url="gravity"
               title="GRAVITY"
               desrciption="In this mode you can practice your aim with targets 
               being thrown up with the effect of gravity on them,
               and improve everything including response time,
               precision, accuracy, speed, with option to reverse the gravity also"
-              
             />
             <ModesLink
               key={3}
+              delay={"0.2s"}
               url="precision"
               title="PRECISION"
               desrciption="In this mode you can practice your precision, 
               which can help you improve your headshots in the game. In this mode the targets are smaller in size."
-              
             />
             <ModesLink
               key={4}
+              delay={"0.3s"}
               url="response"
               title="RESPONSE"
               desrciption="In this mode you can practice and improve your response time."
-              
             />
           </div>
         </div>
