@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 import ChallengeArena from "./pages/challenge/challenge";
 import "antd/dist/antd.css";
 import Home from "./pages/home/home";
@@ -13,6 +13,7 @@ function App() {
       {/* <Home /> */}
       {/* <ChallengeArena /> */}
       {/* <ResponseArena /> */}
+
       <Router>
         <Switch>
           <Route exact path="/aim-trainer">

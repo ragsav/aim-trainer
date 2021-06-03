@@ -1,14 +1,19 @@
+@import './theme.scss';
 .App {
   text-align: center;
   height: 100vh;
   width: 100%;
-  background-color: #111926;
+  
+  background-color: var(--app-color);
+  -webkit-transition: background-color 1000ms linear;
+  -ms-transition: background-color 1000ms linear;
+  transition: background-color 1s ease;
 }
 
 .canvas{
     border: 2px solid tomato;
     border-radius: 4px;
-    background-color: #182336;
+    background-color: var(--canvas-color);
     z-index: 1;
     cursor: crosshair;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -64,7 +69,9 @@
     outline: none !important;
 }
 
-
+.text{
+    color: var(--text-color) !important;
+}
         
 @media screen and (max-width:750px) {
     .nav-bar-stat-item{
@@ -84,7 +91,7 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #111926;
+  background: var(--app-color);
 }
 
 /* Handle */

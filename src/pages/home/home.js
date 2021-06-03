@@ -1,26 +1,31 @@
 import { Link } from "react-router-dom";
 import aimLogo from "../../assets/aim.png";
-import "./home.css";
+import "./home.scss";
+import { Switch } from "antd";
 import gunReload from "../../assets/sounds/shotgun-reload.mp3";
 import { GithubFilled } from "@ant-design/icons";
 import { useEffect, useRef, useState } from "react";
 import revolver from "../../assets/revolver.png";
+import revolverLight from "../../assets/revolver_light.png";
 import challenge from "../../assets/thumbnails/challenge.PNG";
+import { useThemeActions,useThemeState } from "../../context/themeContext";
 
 const ModesLink = (props) => {
   const [isLinkHover, setIsLinkHover] = useState(false);
-
+  const {theme} = useThemeState();
   return (
     <div
-      className="w-100 row m-0 p-0 px-1 mt-4 py-1 pb-2"
+      className="w-100 row m-0 p-0 px-1 mt-4 py-1 pb-2 mode-container"
+      onMouseEnter={() => {
+        setIsLinkHover(true);
+      }}
+      onMouseLeave={() => {
+        setIsLinkHover(false);
+      }}
       style={{
-        animationName: "slide-in",
-        animationDuration: "1s",
-        animationFillMode: "forwards",
+        
         animationDelay: props.delay,
-        transform: "translateX(-25000px)",
-        backgroundColor: "#182336",
-        borderRadius:4
+        
       }}
     >
       <div
@@ -30,43 +35,30 @@ const ModesLink = (props) => {
           height: "100%",
         }}
       >
-        <img
-          src={challenge}
-          style={{
-            width: "100%",
-            height: "100%",
-            border: "2px solid tomato",
-            borderRadius: 4,
-          }}
-        ></img>
+        <Link to={`/aim-trainer/${props.url}`}>
+          <img
+            src={challenge}
+            style={{
+              width: "100%",
+              height: "100%",
+              border:theme.localeCompare('dark')===0?"2px solid tomato":"none",
+              borderRadius: 4,
+            }}
+          ></img>
+        </Link>
       </div>
 
       <div
         className=" col-md-8 col-lg-9 m-0 p-0 w-100 d-flex flex-column align-items-start px-3  order-md-2 order-1"
         style={{
           textAlign: "start",
-          // borderLeft: "4px solid tomato",
-          // borderRadius: 5,
           
-          
-
-          // boxShadow:
-          //   "0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.19)",
-          // backgroundColor: "#16202F",
         }}
       >
-        <div
-          className="d-flex justify-content-start align-items-center w-100"
-          onMouseEnter={() => {
-            setIsLinkHover(true);
-          }}
-          onMouseLeave={() => {
-            setIsLinkHover(false);
-          }}
-        >
+        <div className="d-flex justify-content-start align-items-center w-100">
           {isLinkHover ? (
             <img
-              src={revolver}
+              src={theme.localeCompare('dark')===0?revolver:revolverLight}
               style={{ height: 36, width: 36 }}
               className="mr-3"
             ></img>
@@ -74,7 +66,7 @@ const ModesLink = (props) => {
           <Link to={`/aim-trainer/${props.url}`} className="link">
             {props.title}
           </Link>
-          {/* <div style={{backgroundColor:"tomato",height:2 ,width:"100%"}}></div> */}
+          
         </div>
 
         <p
@@ -93,8 +85,8 @@ const ModesLink = (props) => {
 const Home = (props) => {
   const gunReloadRef = useRef(null);
   const [isLogoHover, setIsLogoHover] = useState(false);
-  
-
+  const {setTheme} = useThemeActions();
+const { theme } = useThemeState();
   useEffect(() => {
     if (isLogoHover && gunReloadRef && gunReloadRef.current) {
       console.log("hello");
@@ -109,7 +101,7 @@ const Home = (props) => {
       <div className="d-flex justify-content-between align-items-center w-100 container mt-3">
         <div
           className="d-flex justify-content-start align-items-center w-100 mt-3"
-          style={{ fontSize: "x-large", fontWeight: "700", color: "white" }}
+          style={{ fontSize: "x-large", fontWeight: "700" }}
         >
           <img
             src={aimLogo}
@@ -129,8 +121,39 @@ const Home = (props) => {
           className="d-flex justify-content-end align-items-center w-100 mt-3"
           style={{ fontSize: "x-large", fontWeight: "700", color: "white" }}
         >
-          <a href="https://github.com/ragsav/aim-trainer">
-            <GithubFilled className="github" style={{ fontSize: 36 }} />
+          <span
+            className="toggle active mx-3"
+            onClick={(e) => {
+              e.preventDefault();
+              e.target.classList.add("animate");
+
+              setTimeout(() => {
+                e.target.classList.toggle("active");
+              }, 150);
+
+              setTimeout(() => e.target.classList.remove("animate"), 300);
+              
+              let flag = false;
+              e.target.classList.forEach((val) => {
+                if (val.localeCompare("active") === 0) {
+                  setTheme("light");
+                  flag = true;
+                }
+              });
+              if (!flag) {
+                setTheme("dark");
+              }
+              console.log(e);
+              
+            }}
+          ></span>
+          
+
+          <a
+            href="https://github.com/ragsav/aim-trainer"
+            className="d-flex justify-content-center align-items-center"
+          >
+            <GithubFilled className="github"  />
           </a>
         </div>
       </div>
@@ -151,7 +174,7 @@ const Home = (props) => {
               desrciption="In this mode you can practice everything including response time,
               precision, accuracy, speed, with and without moving targets"
             />
-            
+
             <ModesLink
               key={2}
               delay={"0.1s"}

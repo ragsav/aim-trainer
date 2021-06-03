@@ -26,7 +26,7 @@ const Play = (props) => {
           fontWeight: "500",
           zIndex: 2,
         }}
-        className="mt-4"
+        className="mt-4 text"
       >
         Press (SPACE) or (ESC) to finish training
       </span>

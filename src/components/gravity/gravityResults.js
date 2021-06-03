@@ -41,7 +41,7 @@ const GravityResults = (props) => {
         className="d-flex flex-column justify-content-center align-items-center"
       >
         <div
-          className="d-flex flex-column justify-content-start align-items-center "
+          className="d-flex flex-column justify-content-start align-items-center text"
           style={{ width: 300 }}
         >
           <div className="mb-2" style={{ fontSize: "x-large" }}>

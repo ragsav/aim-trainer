@@ -1,0 +1,151 @@
+@import '../../theme.scss';
+
+
+.toggle {
+    
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    font-size: 28px;
+}
+
+.toggle::before {
+    content: '🌒';
+}
+
+.toggle.active::before {
+    
+    content: '☀️';
+}
+
+.toggle.animate {
+    animation: animate 600ms ease;
+}
+
+@keyframes animate {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+
+.mode-container{
+  animation-name: slide-in;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  transform: translateX((-2500px));
+  background-color: var(--canvas-color);
+  border-radius: 4px;
+  box-shadow: 0px 0px 32px -8px rgba(71,71,71,0.28);
+-webkit-box-shadow: 0px 0px 32px -8px rgba(71,71,71,0.28);
+-moz-box-shadow: 0px 0px 32px -8px rgba(71,71,71,0.28);
+}
+.nav-bar-title{
+  color: var(--text-color);
+}
+.link{
+    color: var(--secondary-color);
+}
+.home{
+  background-color:var(--app-color);
+}
+.link:hover{
+    animation-name: link-hover;
+    animation-duration: 0.5s;
+    animation-timing-function: ease;
+    color: var(--text-color);
+
+}
+@keyframes link-hover{
+  0%{
+    color: var(--secondary-color);
+  }
+  100%{
+    color: var(--text-color);
+  }
+}
+
+.github{
+    color:var(--text-color);
+    padding: 0;
+    margin: 0;
+    font-size: 32px !important;
+}
+.github:hover{
+    color: var(--secondary-color);
+}
+
+.theme-switch{
+  font-size: small;
+  text-transform: capitalize;
+  color: var(--text-color);
+}
+
+.logo{
+    
+}
+.logo:hover{
+    animation-name: rotation;
+    animation-duration: 0.8s;
+    animation-timing-function: ease;
+    
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(45deg);
+  }
+  100%{
+    transform: rotate(0deg);
+  }
+}
+
+.linear {
+  animation-timing-function: linear;
+}
+
+
+.infinite {
+  animation-iteration-count: infinite;
+}
+
+.mode-description{
+  width: 80%;
+  color: var(--text-color);
+}
+
+.mode-card{
+  animation-name: slide-in;
+  animation-timing-function: ease;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  
+}
+
+@keyframes slide-in{
+  0% {
+    opacity: 0;
+    transform: translateX(-250px);
+    visibility: visible !important;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible !important;
+  }
+}
+
+
+@media screen and (max-width:1200px) {
+  .mode-description{
+    width: 100%;
+  }
+}
+
+
+

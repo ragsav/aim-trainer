@@ -30,6 +30,7 @@ const CountDownTimer = (props) => {
           fontSize: "10em",
           fontWeight: "700",
         }}
+        className="text"
       >
         {countDown}
       </div>
