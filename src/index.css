@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.bg-animate{
+    -webkit-transition: background-color 1000ms linear;
+  -ms-transition: background-color 1000ms linear;
+  transition: background-color 1s ease;
+}
+
+.color-animate{
+    -webkit-transition: color 1000ms linear;
+  -ms-transition: color 1000ms linear;
+  transition: color 1s ease;
+}
+
+.ant-modal-close{
+    border: none !important;
+    outline: none !important;
+    display: none !important;
+}

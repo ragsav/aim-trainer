@@ -4,21 +4,29 @@ const ThemeStateContext = React.createContext(undefined);
 const ThemeActionsContext = React.createContext(undefined);
 
 const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState("dark");
+  const th = window.localStorage.getItem("aim-trainer-theme");
+  console.log(th);
+  const [theme, setMTheme] = useState(th ? th : "dark");
 
   useEffect(() => {
-    if (theme.localeCompare("dark") === 0) {
+    if (theme?.localeCompare("dark") === 0) {
       document.documentElement.style.setProperty("--app-color", "#111926");
       document.documentElement.style.setProperty("--canvas-color", "#182336");
       document.documentElement.style.setProperty("--text-color", "white");
       document.documentElement.style.setProperty("--secondary-color", "tomato");
     } else {
       document.documentElement.style.setProperty("--app-color", "white");
-      document.documentElement.style.setProperty("--canvas-color", "white");
+      document.documentElement.style.setProperty("--canvas-color", "#E0E6FF");
       document.documentElement.style.setProperty("--text-color", "#182336");
       document.documentElement.style.setProperty("--secondary-color", "tomato");
     }
   }, [theme]);
+
+
+  const setTheme = (t) => {
+    setMTheme(t);
+    window.localStorage.setItem("aim-trainer-theme", t);
+  };
   return (
     <ThemeStateContext.Provider
       value={{

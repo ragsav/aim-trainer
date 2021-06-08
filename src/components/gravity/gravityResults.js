@@ -1,6 +1,8 @@
 import { RedoOutlined } from "@ant-design/icons";
+import { useStorageActions } from "../../context/storageContext";
 const GravityResults = (props) => {
   const { data } = props;
+  const { addGravityScore } = useStorageActions();
 
   if (data) {
     let totalTargets = 0;

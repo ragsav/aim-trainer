@@ -1,7 +1,8 @@
 import { RedoOutlined } from "@ant-design/icons";
+import { useStorageActions } from "../../context/storageContext";
 const ChallengeResults = (props) => {
   const { data } = props;
-
+  const { addChallengeScore } = useStorageActions();
   if (data) {
     let totalTargets = 0;
     let hits = 0;

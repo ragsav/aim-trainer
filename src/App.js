@@ -6,10 +6,12 @@ import Home from "./pages/home/home";
 import ResponseArena from "./pages/responseTime/responseTime";
 import PrecisionArena from "./pages/precision/precision";
 import GravityArena from "./pages/gravity/gravity";
+import Scores from "./pages/scores/scores";
 // import cursor from "./assets/crosshair.png";
 function App() {
   return (
     <div className="App">
+      
       {/* <Home /> */}
       {/* <ChallengeArena /> */}
       {/* <ResponseArena /> */}
@@ -17,7 +19,11 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/aim-trainer">
+            
             <Home />
+          </Route>
+          <Route exact path="/aim-trainer/scores">
+            <Scores />
           </Route>
           <Route exact path="/aim-trainer/challenge">
             <ChallengeArena />

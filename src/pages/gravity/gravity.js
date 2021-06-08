@@ -8,6 +8,7 @@ import { TargetGravity } from "../../classes/targetGravity";
 import GravitySettings from "../../components/gravity/gravitySettings";
 import GravityNavBar from "../../components/gravity/gravityNavbar";
 import GravityResults from "../../components/gravity/gravityResults";
+import { useStorageActions } from "../../context/storageContext";
 
 
 const paddingX = window.innerWidth < 750 ? 10 : 20;
@@ -50,6 +51,7 @@ const GravityArena = () => {
   const gunshotRef = useRef(null);
   const gunReloadRef = useRef(null);
   const [isGravityReversed, setIsGravityReversed] = useState(false);
+  const { addGravityScore } = useStorageActions();
 
   useEffect(() => {
     if (isSettingsOpen && playing) {
@@ -118,7 +120,9 @@ const GravityArena = () => {
     data.current.finishTime = Date.now();
     setPlaying(false);
     playingRef.current = false;
-    console.log(data.current.targets);
+    if (gameStarted) {
+      addGravityScore(data.current);
+    }
   }
 
   function decreaseLife() {

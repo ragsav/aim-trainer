@@ -1,6 +1,9 @@
 import { RedoOutlined } from "@ant-design/icons";
+import { useStorageActions } from "../../context/storageContext";
 const PrecisionResults = (props) => {
   const { data } = props;
+  const { addPrecisionScore } = useStorageActions();
+  
 
   return (
     <div

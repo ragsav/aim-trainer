@@ -9,6 +9,8 @@ import ChallengeSettings from "../../components/challenge/challengeSettings";
 import Modal from "antd/lib/modal/Modal";
 import gunshot from "../../assets/sounds/shotgun.mp3";
 import gunReload from "../../assets/sounds/shotgun-reload.mp3";
+import { useStorageActions } from "../../context/storageContext";
+
 
 
 
@@ -52,8 +54,8 @@ const ChallengeArena = () => {
   const [isSoundOn, setIsSoundOn] = useState(true);
   const gunshotRef = useRef(null);
   const gunReloadRef = useRef(null);
+  const { addChallengeScore } = useStorageActions();
 
-  
   useEffect(() => {
     if (isSettingsOpen && playing) {
       finishGame();
@@ -122,7 +124,9 @@ const ChallengeArena = () => {
     data.current.finishTime = Date.now();
     setPlaying(false);
     playingRef.current = false;
-    console.log(data.current.targets);
+    if (gameStarted) {
+      addChallengeScore(data.current);
+    }
   }
 
   function decreaseLife() {
@@ -179,7 +183,7 @@ const ChallengeArena = () => {
 
   function handleCanvasClick(e) {
     e.preventDefault();
-    const mouse = new Vector(e.clientX - 2*paddingX, e.clientY - 70);
+    const mouse = new Vector(e.clientX - 2 * paddingX, e.clientY - 70);
     if (isSoundOn) {
       gunshotRef.current.pause();
       gunshotRef.current.currentTime = 0;
@@ -249,19 +253,18 @@ const ChallengeArena = () => {
           width: window.innerWidth,
           padding: paddingX,
           position: "relative",
-          
         }}
         className="d-flex justify-content-center align-items-center"
       >
         {!gameStarted ? (
           <Play
-            width={window.innerWidth - 4*paddingX}
+            width={window.innerWidth - 4 * paddingX}
             height={window.innerHeight - 90}
             startGame={startGame}
           />
         ) : !playing ? (
           <ChallengeResults
-            width={window.innerWidth - 4*paddingX}
+            width={window.innerWidth - 4 * paddingX}
             height={window.innerHeight - 90}
             data={data.current}
             startGame={startGame}
@@ -270,7 +273,7 @@ const ChallengeArena = () => {
 
         {isCountDown ? (
           <CountDownTimer
-            width={window.innerWidth - 4*paddingX}
+            width={window.innerWidth - 4 * paddingX}
             height={window.innerHeight - 90}
           />
         ) : null}
@@ -282,7 +285,7 @@ const ChallengeArena = () => {
           id="canvas"
           // contentEditable={true}
           ref={canvasRef}
-          width={window.innerWidth - 4*paddingX}
+          width={window.innerWidth - 4 * paddingX}
           height={window.innerHeight - 90}
           // style={{ backgroundColor: "rgb(6, 43, 66)" }}
         ></canvas>

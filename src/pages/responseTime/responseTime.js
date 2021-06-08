@@ -9,6 +9,7 @@ import ResponseTimeSettings from "../../components/responseTime/responseTimeSett
 import Modal from "antd/lib/modal/Modal";
 import gunshot from "../../assets/sounds/shotgun.mp3";
 import gunReload from "../../assets/sounds/shotgun-reload.mp3";
+import { useStorageActions } from "../../context/storageContext";
 
 const paddingX = window.innerWidth < 750 ? 10 : 20;
 
@@ -45,14 +46,17 @@ const ResponseArena = () => {
   const totalTargetsRef = useRef(0);
 
   const [responseTime, setResponseTime] = useState(0);
+  const responseTimeRef = useRef(0);
   const TARGETS = useRef([]);
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const { addResponseScore } = useStorageActions();
 
 
   useEffect(() => {
     if (isSettingsOpen && playing) {
-      finishGame();
+      setPlaying(false);
+      playingRef.current = false;
     }
   }, [isSettingsOpen]);
 
@@ -96,6 +100,7 @@ const ResponseArena = () => {
     setPlaying(true);
     setIsCountDown(true);
     setResponseTime(0);
+    responseTimeRef.current = 0;
     totalTargetsRef.current = 0;
     gameLoops.current = 0;
     TARGETS.current = [];
@@ -109,6 +114,9 @@ const ResponseArena = () => {
 
   function finishGame() {
     clearCanvas(ctx, canvasRef);
+    if (gameStarted) {
+      addResponseScore({ timestamp: Date.now(), responseTime });
+    }
     setPlaying(false);
     playingRef.current = false;
   }
@@ -187,6 +195,7 @@ const ResponseArena = () => {
         console.log(localResponseTime);
         localResponseTime = Math.round(localResponseTime);
         setResponseTime(localResponseTime);
+        responseTimeRef.current = localResponseTime;
         targets[i].isClicked = true;
         targets[i].clickedTime = Date.now();
         targets[i].setClickedRadius();
@@ -198,7 +207,8 @@ const ResponseArena = () => {
   function handleKeyDown(e) {
     if (e.keyCode === 32) {
       console.log("space key pressed");
-      finishGame();
+      setPlaying(false);
+      playingRef.current = false;
     }
   }
 

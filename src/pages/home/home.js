@@ -8,14 +8,14 @@ import { useEffect, useRef, useState } from "react";
 import revolver from "../../assets/revolver.png";
 import revolverLight from "../../assets/revolver_light.png";
 import challenge from "../../assets/thumbnails/challenge.PNG";
-import { useThemeActions,useThemeState } from "../../context/themeContext";
-
+import { useThemeActions, useThemeState } from "../../context/themeContext";
+import { Modal } from "antd";
 const ModesLink = (props) => {
   const [isLinkHover, setIsLinkHover] = useState(false);
-  const {theme} = useThemeState();
+  const { theme } = useThemeState();
   return (
     <div
-      className="w-100 row m-0 p-0 px-1 mt-4 py-1 pb-2 mode-container"
+      className="w-100 row m-0 p-0 px-1 mt-4 py-1 pb-2 mode-container bg-animate"
       onMouseEnter={() => {
         setIsLinkHover(true);
       }}
@@ -23,9 +23,7 @@ const ModesLink = (props) => {
         setIsLinkHover(false);
       }}
       style={{
-        
         animationDelay: props.delay,
-        
       }}
     >
       <div
@@ -41,8 +39,12 @@ const ModesLink = (props) => {
             style={{
               width: "100%",
               height: "100%",
-              border:theme.localeCompare('dark')===0?"2px solid tomato":"none",
+              border:
+                theme.localeCompare("dark") === 0
+                  ? "2px solid tomato"
+                  : "2px solid transparent",
               borderRadius: 4,
+              animation: "border-color 1s ease",
             }}
           ></img>
         </Link>
@@ -52,25 +54,23 @@ const ModesLink = (props) => {
         className=" col-md-8 col-lg-9 m-0 p-0 w-100 d-flex flex-column align-items-start px-3  order-md-2 order-1"
         style={{
           textAlign: "start",
-          
         }}
       >
         <div className="d-flex justify-content-start align-items-center w-100">
           {isLinkHover ? (
             <img
-              src={theme.localeCompare('dark')===0?revolver:revolverLight}
+              src={theme.localeCompare("dark") === 0 ? revolver : revolverLight}
               style={{ height: 36, width: 36 }}
               className="mr-3"
             ></img>
           ) : null}
-          <Link to={`/aim-trainer/${props.url}`} className="link">
+          <Link to={`/aim-trainer/${props.url}`} className="link color-animate">
             {props.title}
           </Link>
-          
         </div>
 
         <p
-          className="mode-description"
+          className="mode-description color-animate"
           style={{ fontSize: "medium", fontWeight: "600" }}
         >
           {props.desrciption}
@@ -81,12 +81,34 @@ const ModesLink = (props) => {
 };
 
 
+const ComingSoonModal = (props) =>{
+  
+  return (
+    <Modal
+    centered
+    width="min-content"
+      title=""
+      visible={props.isComingSoonVis}
+      onCancel={()=>{
+        props.setIsComingSoonVis(false)
+      }}
+      footer={null}
+      className="coming-soon-modal"
+    >
+      <p>Coming soon...</p>
+      
+    </Modal>
+  );
+}
+
+
 
 const Home = (props) => {
   const gunReloadRef = useRef(null);
   const [isLogoHover, setIsLogoHover] = useState(false);
-  const {setTheme} = useThemeActions();
-const { theme } = useThemeState();
+  const { setTheme } = useThemeActions();
+  const { theme } = useThemeState();
+  const [isComingSoonVis,setIsComingSoonVis] = useState(false);
   useEffect(() => {
     if (isLogoHover && gunReloadRef && gunReloadRef.current) {
       console.log("hello");
@@ -96,8 +118,31 @@ const { theme } = useThemeState();
     }
   }, [isLogoHover]);
   return (
-    <div className="d-flex flex-column justify-content-center align-items-center home">
+    <div className="d-flex flex-column justify-content-center align-items-center home bg-animate">
+      <ComingSoonModal isComingSoonVis={isComingSoonVis} setIsComingSoonVis={setIsComingSoonVis}/>
       <audio ref={gunReloadRef} src={gunReload} />
+      <div class="lines-v">
+        <div class="line-v"></div>
+        <div class="line-v hide"></div>
+        <div class="line-v"></div>
+        <div class="line-v hide"></div>
+        <div class="line-v"></div>
+        <div class="line-v hide"></div>
+        <div class="line-v"></div>
+        <div class="line-v hide"></div>
+        <div class="line-v"></div>
+      </div>
+      <div class="lines-h">
+        <div class="line-h"></div>
+        <div class="line-h"></div>
+        <div class="line-h"></div>
+        <div class="line-h"></div>
+        <div class="line-h"></div>
+        <div class="line-h"></div>
+        <div class="line-h"></div>
+        <div class="line-h"></div>
+        <div class="line-h"></div>
+      </div>
       <div className="d-flex justify-content-between align-items-center w-100 container mt-3">
         <div
           className="d-flex justify-content-start align-items-center w-100 mt-3"
@@ -105,8 +150,6 @@ const { theme } = useThemeState();
         >
           <img
             src={aimLogo}
-            height={60}
-            width={60}
             className="mr-3 logo"
             onMouseEnter={() => {
               setIsLogoHover(true);
@@ -115,27 +158,40 @@ const { theme } = useThemeState();
               setIsLogoHover(false);
             }}
           />
-          <span className="nav-bar-title">Aim Trainer</span>
+          <span className="nav-bar-title color-animate">AIM TRAINER</span>
         </div>
         <div
           className="d-flex justify-content-end align-items-center w-100 mt-3"
           style={{ fontSize: "x-large", fontWeight: "700", color: "white" }}
         >
-          <span
-            className="toggle active mx-3"
+          <Link
+            // to="/aim-trainer/scores"
+            className="high-scores h-100 d-flex align-items-end color-animate"
+            onClick={(e)=>{
+              e.preventDefault();
+              setIsComingSoonVis(true);
+              
+            }}
+          >
+            HIGH SCORES
+          </Link>
+          <img
+            className={
+              theme.localeCompare("dark") === 0
+                ? "light-theme-logo mx-3"
+                : "dark-theme-logo mx-3"
+            }
             onClick={(e) => {
               e.preventDefault();
               e.target.classList.add("animate");
 
-              setTimeout(() => {
-                e.target.classList.toggle("active");
-              }, 150);
+              
 
               setTimeout(() => e.target.classList.remove("animate"), 300);
-              
+
               let flag = false;
               e.target.classList.forEach((val) => {
-                if (val.localeCompare("active") === 0) {
+                if (val.localeCompare("light-theme-logo") === 0) {
                   setTheme("light");
                   flag = true;
                 }
@@ -144,16 +200,14 @@ const { theme } = useThemeState();
                 setTheme("dark");
               }
               console.log(e);
-              
             }}
-          ></span>
-          
+          ></img>
 
           <a
             href="https://github.com/ragsav/aim-trainer"
             className="d-flex justify-content-center align-items-center"
           >
-            <GithubFilled className="github"  />
+            <GithubFilled className="github" />
           </a>
         </div>
       </div>

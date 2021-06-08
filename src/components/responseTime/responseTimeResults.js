@@ -1,6 +1,8 @@
 import { RedoOutlined } from "@ant-design/icons";
+import { useStorageActions } from "../../context/storageContext";
 const ResponseTimeResults = (props) => {
   const { data } = props;
+  const { addResponseScore } = useStorageActions();
 
   return (
     <div

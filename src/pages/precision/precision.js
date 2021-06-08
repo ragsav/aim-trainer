@@ -10,6 +10,7 @@ import PrecisionSettings from "../../components/precision/precisionSettings";
 import Modal from "antd/lib/modal/Modal";
 import gunshot from "../../assets/sounds/shotgun.mp3";
 import gunReload from "../../assets/sounds/shotgun-reload.mp3";
+import { useStorageActions } from "../../context/storageContext";
 
 const paddingX = window.innerWidth < 750 ? 10 : 20;
 
@@ -43,18 +44,23 @@ const PrecisionArena = () => {
   const [isCountDown, setIsCountDown] = useState(false);
   const [isCenterPlacement, setIsCenterPlacement] = useState(false);
   const [precision, setPrecision] = useState(0);
+  const precisionRef = useRef(0);
   const totalTargetsRef = useRef(0);
   const [speed, setSpeed] = useState(1000);
   const [hits, setHits] = useState(0);
+  const hitsRef = useRef(0);
   const TARGETS = useRef([]);
   const [isSoundOn, setIsSoundOn] = useState(true);
   const gunshotRef = useRef(null);
   const gunReloadRef = useRef(null);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const { addPrecisionScore } = useStorageActions();
+  
 
   useEffect(() => {
     if (isSettingsOpen && playing) {
-      finishGame();
+      setPlaying(false);
+      playingRef.current = false;
     }
   }, [isSettingsOpen]);
 
@@ -98,7 +104,9 @@ const PrecisionArena = () => {
     setPlaying(true);
     setIsCountDown(true);
     setHits(0);
+    hitsRef.current = 0;
     setPrecision(0);
+    precisionRef.current = 0;
     totalTargetsRef.current = 0;
     lastTargetTime.current = Date.now();
     gameLoops.current = 0;
@@ -113,6 +121,13 @@ const PrecisionArena = () => {
 
   function finishGame() {
     clearCanvas(ctx, canvasRef);
+    if (gameStarted) {
+      addPrecisionScore({
+        timestamp: Date.now(),
+        precision: precisionRef.current,
+        hits: hitsRef.current,
+      });
+    }
     setPlaying(false);
     playingRef.current = false;
   }
@@ -173,8 +188,11 @@ const PrecisionArena = () => {
           targets[i].orignalR;
 
         currentPrecision = (currentPrecision + prevPrecision) / (hits + 1);
+        precisionRef.current = currentPrecision;
         setPrecision(currentPrecision);
+        hitsRef.current = hits + 1;
         setHits(hits + 1);
+
         targets[i].isClicked = true;
         targets[i].clickedTime = Date.now();
         targets[i].setClickedRadius();
@@ -186,7 +204,8 @@ const PrecisionArena = () => {
   function handleKeyDown(e) {
     if (e.keyCode === 32) {
       console.log("space key pressed");
-      finishGame();
+      setPlaying(false);
+      playingRef.current = false;
     }
   }
 

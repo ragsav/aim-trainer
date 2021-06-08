@@ -1,24 +1,254 @@
 @import '../../theme.scss';
 
 
-.toggle {
+.lines-v {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    margin: 0;
+    width: 100%;
+}
+
+
+.lines-h {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    margin: 0;
+    width: 100%;
+}
+.line-v{
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: 60%;
+  background: rgba(255, 99, 71, 0.074);
+  overflow: hidden;
+
+  &::after{
+    content: '';
+    display: block;
+    position: absolute;
+    height: 15vh;
+    width: 100%;
+    top: -30%;
+    left: 0;
+    background: linear-gradient(to bottom, rgba(255, 99, 71, 0.013) 0%, rgba(255, 99, 71, 0.598) 75%, tomato 100%);
+    animation: drop-v 5s 0s infinite;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+  }
+  
+  &:nth-child(1){
+    left: 10%;
+    &::after{
+      animation-delay: 0.5s;
+    }
+  }
+
+  &:nth-child(2){
+    left: 20%;
+    &::after{
+      animation-delay: 1.5s;
+    }
+  }
+
+  &:nth-child(3){
+    left: 30%;
+    &::after{
+      animation-delay: 1s;
+    }
+  }
+  
+  &:nth-child(4){
+    left: 40%;
+    &::after{
+      animation-delay: 2s;
+    }
+  }
+
+  &:nth-child(5){
+    left: 50%;
+    &::after{
+      animation-delay: 3.5s;
+    }
+  }
+
+  &:nth-child(6){
+    left: 60%;
+    &::after{
+      animation-delay: 4.5s;
+    }
+  }
+
+  &:nth-child(7){
+    left: 70%;
+    &::after{
+      animation-delay: 2.5s;
+    }
+  }
+  &:nth-child(8){
+    left: 80%;
+    &::after{
+      animation-delay:4s;
+    }
+  }&:nth-child(9){
+    left: 90%;
+    &::after{
+      animation-delay: 3.5s;
+    }
+  }
+
+
+  
+  
+}
+@keyframes drop-v{
+  0%{
+    top: -50%;
+  }
+    
+  100%{
+    top: 110%;
+  }
+    
+}
+
+
+.line-h{
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  top:50%;
+  left: 0;
+  background: rgba(255, 99, 71, 0.074);
+  overflow: hidden;
+
+  &::after{
+    content: '';
+    display: block;
+    position: absolute;
+    width: 15vh;
+    height: 100%;
+    left: -50%;
+    top: 0;
+    background: linear-gradient(to right, rgba(255, 99, 71, 0.013) 0%, rgba(255, 99, 71, 0.598) 75%, tomato 100%);
+    animation: drop-h 5s 0s infinite;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+  }
+  
+  &:nth-child(1){
+    top: 10%;
+    &::after{
+      animation-delay: 0.5s;
+    }
+  }
+
+  &:nth-child(2){
+    top: 20%;
+    &::after{
+      animation-delay: 2s;
+    }
+  }
+
+  &:nth-child(3){
+    top: 30%;
+    &::after{
+      animation-delay: 2.5s;
+    }
+  }
+  
+  &:nth-child(4){
+    top: 40%;
+    &::after{
+      animation-delay: 1.5s;
+    }
+  }
+
+  &:nth-child(5){
+    top: 50%;
+    &::after{
+      animation-delay: 3.5s;
+    }
+  }
+
+  &:nth-child(6){
+    top: 60%;
+    &::after{
+      animation-delay: 4s;
+    }
+  }
+
+  &:nth-child(7){
+    top: 70%;
+    &::after{
+      animation-delay: 1s;
+    }
+  }
+  &:nth-child(8){
+    top: 80%;
+    &::after{
+      animation-delay:4.5s;
+    }
+  }&:nth-child(9){
+    top: 90%;
+    &::after{
+      animation-delay: 3.5s;
+    }
+  }
+
+
+  
+  
+}
+@keyframes drop-h{
+  0%{
+    left: -50%;
+  }
+    
+  100%{
+    left: 110%;
+  }
+    
+}
+
+
+.dark-theme-logo {
     
     cursor: pointer;
     margin: 0;
     padding: 0;
-    font-size: 28px;
-}
-
-.toggle::before {
-    content: '🌒';
-}
-
-.toggle.active::before {
+    content: url('../../assets/moon.png');
+    height: 30px;
+    width: 30px;
+    z-index: 10;
     
-    content: '☀️';
 }
 
-.toggle.animate {
+
+
+.light-theme-logo {
+    
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    content: url('../../assets/sun.png');
+    height: 30px;
+    width: 30px;
+    z-index: 10;
+    
+}
+
+
+
+
+animate {
     animation: animate 600ms ease;
 }
 
@@ -37,18 +267,36 @@
   transform: translateX((-2500px));
   background-color: var(--canvas-color);
   border-radius: 4px;
-  box-shadow: 0px 0px 32px -8px rgba(71,71,71,0.28);
--webkit-box-shadow: 0px 0px 32px -8px rgba(71,71,71,0.28);
--moz-box-shadow: 0px 0px 32px -8px rgba(71,71,71,0.28);
+  
 }
 .nav-bar-title{
+  
   color: var(--text-color);
+  font-size: x-large;
+  font-weight: 900;
+  text-transform: capitalize;
 }
 .link{
     color: var(--secondary-color);
 }
+
+.high-scores{
+  color: tomato;
+  font-size: medium;
+  z-index: 10;
+  text-transform: capitalize;
+  font-weight: 800;
+}
+.high-scores:hover{
+  border-bottom: 4px solid tomato;
+  
+  color: var(--text-color);
+}
 .home{
   background-color:var(--app-color);
+  position: relative;
+ 
+  
 }
 .link:hover{
     animation-name: link-hover;
@@ -69,8 +317,9 @@
 .github{
     color:var(--text-color);
     padding: 0;
+    z-index: 10;
     margin: 0;
-    font-size: 32px !important;
+    font-size: 30px !important;
 }
 .github:hover{
     color: var(--secondary-color);
@@ -83,13 +332,32 @@
 }
 
 .logo{
-    
+    height: 60px;
+    width: 60px;
+    z-index: 10;
 }
 .logo:hover{
     animation-name: rotation;
     animation-duration: 0.8s;
     animation-timing-function: ease;
     
+}
+
+.coming-soon-modal{
+  border-radius: 4 !important;
+  .ant-modal-body{
+    
+    background-color: tomato;
+    text-align: center;
+  }
+  p{
+    display: inline-block;
+    white-space: nowrap;
+    margin-bottom: 0;
+    font-weight: 800;
+    font-size: x-large;
+    color: white;
+  }
 }
 
 @keyframes rotation {
@@ -144,6 +412,31 @@
 @media screen and (max-width:1200px) {
   .mode-description{
     width: 100%;
+  }
+}
+
+@media screen and (max-width:540px){
+  .hide{
+    display: none !important;
+  }
+  .github{
+    display: none !important;
+  }
+  .high-scores{
+    font-size: small;
+  }
+  .logo{
+    height: 30px;
+    width: 30px;
+  }
+  .nav-bar-title{
+    font-size: small;
+  }
+  .toggle{
+    padding: 0;
+    height: 25px;
+    width: 25px;
+    margin: 0;
   }
 }
 

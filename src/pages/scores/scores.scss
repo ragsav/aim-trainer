@@ -1,0 +1,46 @@
+.scores{
+  background-color:var(--app-color);
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+    
+}
+
+.score-card{
+  width: 100%;
+  height: min-content;
+}
+
+.clear-scores{
+  color: tomato;
+  font-size: medium;
+  z-index: 10;
+  border: none;
+  background-color: transparent;
+  text-transform: capitalize;
+  font-weight: 800;
+  border-radius: 2px;
+  cursor: pointer;
+  
+}
+.clear-scores:hover{
+  color: var(--text-color);
+  background-color: tomato;
+}
+
+.confirmation-modal{
+  border-radius: 4 !important;
+  .ant-modal-body{
+    
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+  }
+  p{
+    display: inline-block;
+    white-space: nowrap;
+    margin-bottom: 0;
+    font-weight: 800;
+    font-size: medium;
+    color: tomato;
+  }
+}
