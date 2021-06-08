@@ -1,31 +1,32 @@
 {
   "files": {
-    "main.css": "/aim-trainer/static/css/main.59d9f9af.chunk.css",
-    "main.js": "/aim-trainer/static/js/main.cf6c5185.chunk.js",
-    "main.js.map": "/aim-trainer/static/js/main.cf6c5185.chunk.js.map",
-    "runtime-main.js": "/aim-trainer/static/js/runtime-main.284ada2a.js",
-    "runtime-main.js.map": "/aim-trainer/static/js/runtime-main.284ada2a.js.map",
+    "main.css": "/aim-trainer/static/css/main.36790154.chunk.css",
+    "main.js": "/aim-trainer/static/js/main.a3eb7377.chunk.js",
+    "main.js.map": "/aim-trainer/static/js/main.a3eb7377.chunk.js.map",
+    "runtime-main.js": "/aim-trainer/static/js/runtime-main.66b8072c.js",
+    "runtime-main.js.map": "/aim-trainer/static/js/runtime-main.66b8072c.js.map",
     "static/css/2.00bb4513.chunk.css": "/aim-trainer/static/css/2.00bb4513.chunk.css",
-    "static/js/2.4f9aa529.chunk.js": "/aim-trainer/static/js/2.4f9aa529.chunk.js",
-    "static/js/2.4f9aa529.chunk.js.map": "/aim-trainer/static/js/2.4f9aa529.chunk.js.map",
-    "static/js/3.8014fa09.chunk.js": "/aim-trainer/static/js/3.8014fa09.chunk.js",
-    "static/js/3.8014fa09.chunk.js.map": "/aim-trainer/static/js/3.8014fa09.chunk.js.map",
+    "static/js/2.7da00251.chunk.js": "/aim-trainer/static/js/2.7da00251.chunk.js",
+    "static/js/2.7da00251.chunk.js.map": "/aim-trainer/static/js/2.7da00251.chunk.js.map",
+    "static/js/3.3c2d90b6.chunk.js": "/aim-trainer/static/js/3.3c2d90b6.chunk.js",
+    "static/js/3.3c2d90b6.chunk.js.map": "/aim-trainer/static/js/3.3c2d90b6.chunk.js.map",
     "index.html": "/aim-trainer/index.html",
     "static/css/2.00bb4513.chunk.css.map": "/aim-trainer/static/css/2.00bb4513.chunk.css.map",
-    "static/css/main.59d9f9af.chunk.css.map": "/aim-trainer/static/css/main.59d9f9af.chunk.css.map",
-    "static/js/2.4f9aa529.chunk.js.LICENSE.txt": "/aim-trainer/static/js/2.4f9aa529.chunk.js.LICENSE.txt",
+    "static/css/main.36790154.chunk.css.map": "/aim-trainer/static/css/main.36790154.chunk.css.map",
+    "static/js/2.7da00251.chunk.js.LICENSE.txt": "/aim-trainer/static/js/2.7da00251.chunk.js.LICENSE.txt",
     "static/media/aim.28510207.png": "/aim-trainer/static/media/aim.28510207.png",
     "static/media/challenge.babe4f3c.PNG": "/aim-trainer/static/media/challenge.babe4f3c.PNG",
+    "static/media/home.scss": "/aim-trainer/static/media/sun.0b7ed9b3.png",
     "static/media/revolver.334fd597.png": "/aim-trainer/static/media/revolver.334fd597.png",
     "static/media/revolver_light.5626d513.png": "/aim-trainer/static/media/revolver_light.5626d513.png",
     "static/media/shotgun-reload.30299b00.mp3": "/aim-trainer/static/media/shotgun-reload.30299b00.mp3",
     "static/media/shotgun.be7adb98.mp3": "/aim-trainer/static/media/shotgun.be7adb98.mp3"
   },
   "entrypoints": [
-    "static/js/runtime-main.284ada2a.js",
+    "static/js/runtime-main.66b8072c.js",
     "static/css/2.00bb4513.chunk.css",
-    "static/js/2.4f9aa529.chunk.js",
-    "static/css/main.59d9f9af.chunk.css",
-    "static/js/main.cf6c5185.chunk.js"
+    "static/js/2.7da00251.chunk.js",
+    "static/css/main.36790154.chunk.css",
+    "static/js/main.a3eb7377.chunk.js"
   ]
 }
